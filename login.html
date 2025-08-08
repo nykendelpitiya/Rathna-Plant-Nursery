@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - PLANT HUB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+  <div class="navbar-left">
+    <img src="logo.jpg" alt="Logo" class="logo-img" />
+    <span class="logo-text">PLANT HUB</span>
+  </div>
+  <nav class="navbar-right">
+    <a href="index.html">Home</a>
+    <a href="plants.html">Plants</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+    <a href="register.html" class="register-btn">Register</a>
+    <a href="#" class="logout-btn" onclick="logoutUser()">Logout</a>
+  </nav>
+</header>
+
+  <section class="form-section">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="abc123@gmail.com" required autocomplete="off">
+      <input type="password" id="password" placeholder="abc123#" required autocomplete="off">
+      <button type="submit">Login</button>
+    </form>
+    <p id="loginMessage" class="message"></p>
+  </section>
+
+  <script>
+    const savedEmail = localStorage.getItem("registeredEmail");
+    const savedPassword = localStorage.getItem("registeredPassword");
+
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const message = document.getElementById("loginMessage");
+
+      if (email === savedEmail && password === savedPassword) {
+        message.style.color = "lightgreen";
+        message.textContent = "Login Successful! ✅";
+       
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1500);
+      } else {
+        message.style.color = "salmon";
+        message.textContent = "Invalid email or password ❌";
+      }
+    });
+  </script>
+</body>
+</html>

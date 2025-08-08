@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register - PLANT HUB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-left">
+      <img src="logo.jpg" alt="Logo" class="logo-img" />
+      <span class="logo-text">PLANT HUB</span>
+    </div>
+    <nav class="navbar-right">
+      <a href="index.html">Home</a>
+      <a href="plants.html">Plants</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="register-btn">Register</a>
+    </nav>
+  </header>
+
+  <section class="form-section">
+    <h2>Register</h2>
+    <form id="registerForm">
+      <input type="email" id="regEmail" placeholder="abc123@gmail.com" required autocomplete="off">
+      <input type="password" id="regPassword" placeholder="abc123#" required autocomplete="off">
+      <button type="submit">Register</button>
+    </form>
+    <p id="registerMessage" class="message"></p>
+  </section>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("regEmail").value;
+      const password = document.getElementById("regPassword").value;
+
+      
+      localStorage.setItem("registeredEmail", email);
+      localStorage.setItem("registeredPassword", password);
+
+      document.getElementById("registerMessage").style.color = "lightgreen";
+      document.getElementById("registerMessage").textContent = "Registered successfully! ✅";
+
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 1500);
+    });
+  </script>
+</body>
+</html>

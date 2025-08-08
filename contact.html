@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact - PLANT HUB</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function logoutUser() {
+      localStorage.removeItem("registeredEmail");
+      localStorage.removeItem("registeredPassword");
+      alert("You have been logged out!");
+      window.location.href = "login.html";
+    }
+
+    function showMessage(event) {
+      event.preventDefault(); 
+      alert("✅ Thank you! Your message has been sent successfully.");
+    }
+  </script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-left">
+      <img src="logo.jpg" alt="Logo" class="logo-img" />
+      <span class="logo-text">PLANT HUB</span>
+    </div>
+    <nav class="navbar-right">
+      <a href="index.html">Home</a>
+      <a href="plants.html">Plants</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="register-btn">Register</a>
+      <a href="#" class="logout-btn" onclick="logoutUser()">Logout</a>
+    </nav>
+  </header>
+
+  <div class="form-container">
+    <h2>Contact Us</h2>
+    <form onsubmit="showMessage(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</body>
+</html>

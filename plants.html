@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plants - PLANT HUB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-left">
+      <img src="logo.jpg" alt="Logo" class="logo-img" />
+      <span class="logo-text">PLANT HUB</span>
+    </div>
+    <nav class="navbar-right">
+      <a href="index.html">Home</a>
+      <a href="plants.html">Plants</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="register-btn">Register</a>
+      <a href="#" class="logout-btn" onclick="logoutUser()">Logout</a>
+    </nav>
+  </header>
+
+  <section class="plants">
+    <h2>Available Plants</h2>
+    <div class="plant-list">
+      <div class="plant-card">
+        <img src="Tea01.jpg" alt="Tea Plant" class="zoom-img">
+        <h3>Tea Plant (තේ පැළ)-20/26</h3>
+        <p>Price: Rs. 35.00</p>
+        <input type="number" min="0" class="qty" data-price="250" placeholder="Qty">
+      </div>
+
+      <div class="plant-card">
+        <img src="Tea.jpg" alt="Tea Plant" class="zoom-img">
+        <h3>Tea Plant(තේ පැළ)-40/49</h3>
+        <p>Price: Rs. 55.00</p>
+        <input type="number" min="0" class="qty" data-price="55" placeholder="Qty">
+      </div>
+
+      <div class="plant-card">
+        <img src="chaina01.jpg" alt="Tea Plant" class="zoom-img">
+        <h3>Tea Plant (තේ පැළ)- 20/43 Red Chaina 01</h3>
+        <p>Price: Rs. 100.00</p>
+        <input type="number" min="0" class="qty" data-price="100" placeholder="Qty">
+      </div>
+
+      <div class="plant-card">
+        <img src="chaina02.jpg" alt="Tea Plant" class="zoom-img">
+        <h3>Tea Plant (තේ පැළ)-20/43 Red Chaina 02</h3>
+        <p>Price: Rs. 100.00</p>
+        <input type="number" min="0" class="qty" data-price="100" placeholder="Qty">
+      </div>
+
+      <div class="plant-card">
+        <img src="chaina03.jpg" alt="Tea Plant" class="zoom-img">
+        <h3>Tea Plant (තේ පැළ)-20/43 Red Chaina 03</h3>
+        <p>Price: Rs. 100.00</p>
+        <input type="number" min="0" class="qty" data-price="100" placeholder="Qty">
+      </div>
+
+        <div class="plant-card">
+        <img src="cinnomom.jpg" alt="Cinnamon Plant" class="zoom-img">
+        <h3> Cinnamon Plant (කුරුදු පැළ)</h3>
+        <p>Price: Rs. 30.00</p>
+        <input type="number" min="0" class="qty" data-price="30" placeholder="Qty">
+      </div>
+
+         <div class="plant-card">
+        <img src="peper.jpg" alt="Pepper Plant" class="zoom-img">
+        <h3> Pepper Plant (ගම්මිරිස් පැළ)</h3>
+        <p>Price: Rs. 60.00</p>
+        <input type="number" min="0" class="qty" data-price="60" placeholder="Qty">
+      </div>
+
+           <div class="plant-card">
+        <img src="Puwak.jpg" alt="Arica Plant" class="zoom-img">
+        <h3> Arica Plant (පුවක් පැළ)</h3>
+        <p>Price: Rs. 50.00</p>
+        <input type="number" min="0" class="qty" data-price="50" placeholder="Qty">
+      </div>
+
+      <div class="order-summary">
+        <p id="total-price">Total Price: Rs. 0.00</p>
+        <button id="order-btn">Place Order</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const qtyInputs = document.querySelectorAll('.qty');
+    const totalPriceElement = document.getElementById('total-price');
+    const orderBtn = document.getElementById('order-btn');
+
+    function updateTotalPrice() {
+      let total = 0;
+      qtyInputs.forEach(input => {
+        const qty = parseFloat(input.value) || 0;
+        const price = parseFloat(input.getAttribute('data-price')) || 0;
+        total += qty * price;
+      });
+      totalPriceElement.textContent = `Total Price: Rs. ${total.toFixed(2)}`;
+    }
+
+    qtyInputs.forEach(input => {
+      input.addEventListener('input', updateTotalPrice);
+    });
+
+    orderBtn.addEventListener('click', () => {
+      let orderDetails = [];
+      qtyInputs.forEach(input => {
+        const qty = parseInt(input.value) || 0;
+        if (qty > 0) {
+          const plantName = input.closest('.plant-card').querySelector('h3').textContent;
+          orderDetails.push(`${plantName} - ${qty}`);
+        }
+      });
+
+      if (orderDetails.length > 0) {
+      const total = totalPriceElement.textContent;
+      alert(`✅ The Order is Successful!\n\n🪴 Order Summary:\n${orderDetails.join('\n')}\n\n💰 ${total}`);
+    } else {
+      alert('⚠ Please select at least one plant to place an order.');
+      }
+    });
+  </script>
+</body>
+</html>
